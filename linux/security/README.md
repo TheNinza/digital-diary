@@ -25,7 +25,7 @@ We can use some service like watchtower to update docker containers automaticall
 1. Create a new user
 
 ```bash
-sudo adduser <username> -m -s /bin/bash -c "<comment>"
+sudo useradd <username> -m -s /bin/bash -c "<comment>"
 ```
 
 2. Add the user to the sudo group. (Additionally we can add the user to other groups. For e.g here we are adding the user to the docker and adm groups)
@@ -107,7 +107,9 @@ sudo ss -ltpn
 
 ### Allow only required ports
 
-This will allow only the ports 22, 80 and 443
+This will allow only the ports 22, 80 and 443.
+
+**Note:** _Make sure that you are not locked out. So allow ssh port first._
 
 ```bash
 sudo ufw allow 22
@@ -117,11 +119,11 @@ sudo ufw allow 443
 
 ### Enable the firewall
 
+> **Note:** _For ports exposed by docker containers, ufw will not work. We need to use iptables to allow those ports. We can also use reverse proxy to expose the ports._
+
 ```bash
 sudo ufw enable
 ```
-
-> Note: For ports exposed by docker containers, ufw will not work. We need to use iptables to allow those ports. We can also use reverse proxy to expose the ports.
 
 ## Use a reverse proxy
 
