@@ -8,10 +8,21 @@ services:
   app:
     container_name: portainer
     image: "portainer/portainer-ce:latest"
+    # best practice is to not expose the port to the internet
+    # and use a reverse proxy to access it
     ports:
-      - "9000:9000"
-      - "9443:9443"
-      - "8000:8000"
+      - "9000:9000" # Portainer Web UI
+      - "8000:8000" # Only needed if you want to use Edge Compute features
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer-data:/data
+    restart: unless-stopped
+#########
+# if you want to use a pre-existing network (for example, if you are using nginx-proxy),
+# uncomment the following line and replace the network name
+#########
+
+# networks:
+#   default:
+#     name: my-pre-existing-network
+#     external: true
