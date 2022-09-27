@@ -2,19 +2,9 @@
 
 [Watchtower](https://containrrr.dev/watchtower/) is a tool that automatically updates running Docker containers with the latest version of the image.
 
-## Installation
+## Installation and configuration
 
 The Watchtower addon can be installed as a docker container.
-
-```bash
-docker run -d \
-  --name watchtower \
-  --restart always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  containrrr/watchtower
-```
-
-## Configuration
 
 Define the configuration in a `.env` file and run the container using the following command:
 
